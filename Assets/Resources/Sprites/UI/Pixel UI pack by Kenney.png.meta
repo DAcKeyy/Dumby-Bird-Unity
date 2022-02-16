@@ -8,6 +8,9 @@ TextureImporter:
   - first:
       213: -1021604291164067900
     second: Coursor
+  - first:
+      213: -4431020280306443843
+    second: Point Button
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -170,6 +173,27 @@ TextureImporter:
       bones: []
       spriteID: 4c7a6245f4882d1f0800000000000000
       internalID: -1021604291164067900
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Point Button
+      rect:
+        serializedVersion: 2
+        x: 520
+        y: 705
+        width: 133
+        height: 132
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 19, y: 19, z: 19, w: 19}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: db958c7188ad182c0800000000000000
+      internalID: -4431020280306443843
       vertices: []
       indices: 
       edges: []
