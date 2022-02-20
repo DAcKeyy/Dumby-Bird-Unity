@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using Object = UnityEngine.Object;
+using UnityEngine.EventSystems;
 
 namespace Pools
 {
@@ -21,30 +21,50 @@ namespace Pools
             _parent = parent;
             _prefabPool = new List<T>();
 
-            for (var i = 0; i < initAmount; i++)
-            {
+            for (var i = 0; i < initAmount; i++) {
                 CreatePrefab();
             }
         }
 
-        public void Reenqueue()
+        public void AddObject(T prefab)
+        {
+            _prefabPool.Add(prefab);
+        }
+        
+        public List<T> ShiftPool(MoveDirection direction)
         {
             var queue = new Queue<T>(_prefabPool);
+            List<T> enqueuedList;
             
-            queue.Enqueue(queue.Dequeue());
+            //TODO чОТО не то
+            switch (direction) {
+                case MoveDirection.Left:
+                    queue.Enqueue(queue.Dequeue());
+                    enqueuedList = queue.ToList();
+                    break;
+                case MoveDirection.Right:
+                    enqueuedList = _prefabPool;
+                    (enqueuedList[_prefabPool.Count - 1], enqueuedList[0]) = (enqueuedList[0], enqueuedList[_prefabPool.Count - 1]);
+                    break;
+                default:
+                    Debug.LogWarning($"{direction} for PoolShift in MonoPool not implemented yet.");
+                    return null;
+            }
 
-            var enqueuedList = queue.ToList();
             
             for (var i = 0; i < _prefabPool.Count; i++)
             {
                 _prefabPool[i] = enqueuedList[i];
             }
+
+            return _prefabPool;
         }
 
+        
 
         private void CreatePrefab()
         {
-            var prefab = Object.Instantiate(_prefab, _parent);
+            var prefab = UnityEngine.Object.Instantiate(_prefab, _parent);
             
             _prefabPool.Add(prefab);
             
