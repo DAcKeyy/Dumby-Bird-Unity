@@ -2,10 +2,9 @@
 using Scenes.Actors;
 using Unity.Mathematics;
 using UnityEngine;
-using UnityEngine.Serialization;
 using Object = UnityEngine.Object;
 
-namespace Scenes.Generation
+namespace Scenes.Generation.Factories
 {
     public class PipePareCreator
     {
@@ -16,14 +15,8 @@ namespace Scenes.Generation
             _pipe = settings._prefab;
             _themselvesDistance = settings._themselvesDistance;
         }
-        
-        [Serializable]
-        public struct PipePareSettings {
-            public Pipe _prefab;
-            public float2 _themselvesDistance;
-        }
 
-        public GameObject CreatePipePare(Vector2 position)
+        public PipePare CreatePipePare(Vector2 position)
         {
             var pipePare = new GameObject("Pipe Pare") {
                 transform = {
@@ -33,32 +26,31 @@ namespace Scenes.Generation
             };
             var upPipe = Object.Instantiate(_pipe, pipePare.transform);
             var bottomPipe = Object.Instantiate(_pipe, pipePare.transform);
+            
             WidePipes(bottomPipe, upPipe);
+            
             var pare = pipePare.AddComponent<PipePare>();
+            
             AddPareCollider(pare);
-            return pipePare;
+            
+            return pare;
         }
 
         private void WidePipes(Pipe bottomPipe, Pipe upPipe)
         {
-            var pipeTransform = bottomPipe.transform;
-            
-            pipeTransform.position = new Vector2(
-                pipeTransform.position.x,
-                -UnityEngine.Random.Range(_themselvesDistance.x, _themselvesDistance.y)); // -y!
+            bottomPipe.transform.position = new Vector2(
+                bottomPipe.transform.position.x,
+                -UnityEngine.Random.Range(_themselvesDistance.x, _themselvesDistance.y) / 2); // -y / 2
             
             
-            
-            pipeTransform = upPipe.transform;
-            
-            pipeTransform.position = new Vector2(
-                pipeTransform.position.x,
-                UnityEngine.Random.Range(_themselvesDistance.x, _themselvesDistance.y));// +y!
+            upPipe.transform.position = new Vector2(
+                upPipe.transform.position.x,
+                UnityEngine.Random.Range(_themselvesDistance.x, _themselvesDistance.y) / 2);// +y / 2
             
             //TODO Убрать магическое число
-            pipeTransform.eulerAngles = new Vector3(
-                pipeTransform.eulerAngles.x,
-                pipeTransform.eulerAngles.y,
+            upPipe.transform.eulerAngles = new Vector3(
+                upPipe.transform.eulerAngles.x,
+                upPipe.transform.eulerAngles.y,
                 -180);
         }
 
@@ -67,6 +59,12 @@ namespace Scenes.Generation
             var collieder = pipePare.gameObject.AddComponent<BoxCollider2D>();
             collieder.size = new Vector2(0, _themselvesDistance.y);
             collieder.isTrigger = true;
+        }
+        
+        [Serializable]
+        public struct PipePareSettings {
+            public Pipe _prefab;
+            public float2 _themselvesDistance;
         }
     }
 }

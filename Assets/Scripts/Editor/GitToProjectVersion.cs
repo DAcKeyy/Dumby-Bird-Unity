@@ -4,7 +4,7 @@ using System.Text;
 using UnityEditor;
 using UnityEngine;
 
-namespace Data.Editor
+namespace Editor
 {
     public class GitException : InvalidOperationException
     {
@@ -49,7 +49,7 @@ namespace Data.Editor
             }
         }
     }
-    
+
     public static class ProcessExtensions
     {
         public static int Run(this Process process, string application,
@@ -82,7 +82,7 @@ namespace Data.Editor
             return process.ExitCode;
         }
     }
-    
+
     [InitializeOnLoad]
     public static class InitializeOnLoad
     {

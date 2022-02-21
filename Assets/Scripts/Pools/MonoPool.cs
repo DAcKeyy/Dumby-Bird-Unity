@@ -14,9 +14,18 @@ namespace Pools
         private readonly T _prefab;
         private readonly Transform _parent;
         private readonly List<T> _prefabPool;
-        
-        public MonoPool(T prefab, int initAmount, Transform parent)
+
+        public MonoPool()
         {
+                
+        }
+
+        public MonoPool(T prefab) {
+            _prefab = prefab;
+            _prefabPool = new List<T>();
+        }
+
+        public MonoPool(T prefab, int initAmount, Transform parent) {
             _prefab = prefab;
             _parent = parent;
             _prefabPool = new List<T>();
@@ -25,7 +34,7 @@ namespace Pools
                 CreatePrefab();
             }
         }
-
+        
         public void AddObject(T prefab)
         {
             _prefabPool.Add(prefab);
@@ -59,9 +68,7 @@ namespace Pools
 
             return _prefabPool;
         }
-
         
-
         private void CreatePrefab()
         {
             var prefab = UnityEngine.Object.Instantiate(_prefab, _parent);
