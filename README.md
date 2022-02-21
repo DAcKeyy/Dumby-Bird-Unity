@@ -1,3 +1,3 @@
-# Dumby Bird [Unity]
+# Dumby Bird
 
 Клон Flappy Bird
