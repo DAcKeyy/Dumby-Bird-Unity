@@ -39,14 +39,16 @@ namespace Scenes.Generation.Factories
         
         private void WidePipes(Pipe bottomPipe, Pipe upPipe)
         {
+            var yDistance = UnityEngine.Random.Range(_themselvesDistance.x, _themselvesDistance.y);
+            
             bottomPipe.transform.position = new Vector2(
                 bottomPipe.transform.position.x,
-                -UnityEngine.Random.Range(_themselvesDistance.x, _themselvesDistance.y) / 2); // -y / 2
+                -yDistance / 2); // -y / 2
             
             
             upPipe.transform.position = new Vector2(
                 upPipe.transform.position.x,
-                UnityEngine.Random.Range(_themselvesDistance.x, _themselvesDistance.y) / 2);// +y / 2
+                yDistance / 2);// +y / 2
             
             //TODO Убрать магическое число
             upPipe.transform.eulerAngles = new Vector3(
