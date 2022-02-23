@@ -1,26 +1,16 @@
-﻿using System.Collections.Generic;
-using Scenes.Generation.Base;
-using Scenes.Generation.Contexts;
+﻿using Scenes.Generation.Base;
 using UnityEngine;
+using Zenject;
 
 namespace Scenes.Generation
 {
     public class LevelGenerator : MonoBehaviour
     {
-        [SerializeField] private MyEnum generatorsContexts;
-        private enum MyEnum {
-            FlappyBird = 1
-        }
-        
-
-
-        private Dictionary<int, ILevelGenerator> _generatorsContexts = new Dictionary<int, ILevelGenerator>() {
-            //{1, new FlappyLevelGenerationContext()}
-        };
+        [Inject] private ILevelGenerator _levelGeneration;
         
         private void OnEnable()
         {
-
+            _levelGeneration.Create();
         }
     }
 }

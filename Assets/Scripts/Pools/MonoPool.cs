@@ -15,9 +15,8 @@ namespace Pools
         private readonly Transform _parent;
         private readonly List<T> _prefabPool;
 
-        public MonoPool()
-        {
-                
+        public MonoPool() {
+            _prefabPool = new List<T>();
         }
 
         public MonoPool(T prefab) {

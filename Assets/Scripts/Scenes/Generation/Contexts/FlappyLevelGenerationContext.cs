@@ -1,4 +1,4 @@
-﻿using System;
+﻿using Data.Generators;
 using Pools;
 using Scenes.Actors;
 using Scenes.Generation.Base;
@@ -7,29 +7,25 @@ using UnityEngine;
 
 namespace Scenes.Generation.Contexts
 {
-    [Serializable]
     public class FlappyLevelGenerationContext : ILevelGenerator
     {
-        private const float PIPE_START_POSITION_X = 4f;
-        private const float PIPE_DISTANCE = 2f;
-        private const int PIPES_POOL_AMOUNT = 10;
+        private readonly FlappyLevelGenerationSettings _settings;
+        private readonly PipePareCreator _pipePareCreator;
+        private readonly MonoPool<PipePare> _pipeParePool;
 
-        private PipePareCreator _pipePareCreator;
-        private MonoPool<PipePare> _pipeParePool;
-
-        public FlappyLevelGenerationContext(PipePareCreator.PipePareSettings pipePareSettings) {
-            _pipePareCreator = new PipePareCreator(pipePareSettings);
+        protected FlappyLevelGenerationContext(FlappyLevelGenerationSettings levelGenerationSettings) {
+            _settings = levelGenerationSettings;
+            _pipePareCreator = new PipePareCreator(_settings.PipeSettings);
+            _pipeParePool = new MonoPool<PipePare>();
         }
 
         public void Create()
         {
-            _pipeParePool = new MonoPool<PipePare>();
-            
-            for (var i = 0; i < PIPES_POOL_AMOUNT; i++)
+            for (var i = 0; i < _settings.PipesPoolAmount; i++)
             {
                 _pipeParePool.AddObject(
-                    _pipePareCreator.CreatePipePare(new Vector2(
-                        PIPE_START_POSITION_X + PIPE_DISTANCE * i, 
+                    _pipePareCreator.Create(new Vector2(
+                        _settings.PipeStartPositionX + _settings.PipeDistance * i, 
                         0f)));
             }
         }

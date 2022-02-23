@@ -2,11 +2,12 @@
 using Scenes.Actors;
 using Unity.Mathematics;
 using UnityEngine;
+using Zenject;
 using Object = UnityEngine.Object;
 
 namespace Scenes.Generation.Factories
 {
-    public class PipePareCreator
+    public class PipePareCreator : IFactory<Vector2 , PipePare>
     {
         private readonly Pipe _pipe;
         private readonly float2 _themselvesDistance;
@@ -15,8 +16,8 @@ namespace Scenes.Generation.Factories
             _pipe = settings._prefab;
             _themselvesDistance = settings._themselvesDistance;
         }
-
-        public PipePare CreatePipePare(Vector2 position)
+        
+        public PipePare Create(Vector2 position)
         {
             var pipePare = new GameObject("Pipe Pare") {
                 transform = {
@@ -35,7 +36,7 @@ namespace Scenes.Generation.Factories
             
             return pare;
         }
-
+        
         private void WidePipes(Pipe bottomPipe, Pipe upPipe)
         {
             bottomPipe.transform.position = new Vector2(
@@ -57,7 +58,8 @@ namespace Scenes.Generation.Factories
         private void AddPareCollider(PipePare pipePare)
         {
             var collieder = pipePare.gameObject.AddComponent<BoxCollider2D>();
-            collieder.size = new Vector2(0, _themselvesDistance.y);
+            //TODO Убрать магическое число
+            collieder.size = new Vector2(0.1f, _themselvesDistance.y);
             collieder.isTrigger = true;
         }
         

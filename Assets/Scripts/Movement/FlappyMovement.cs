@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace Movement
 {
-    [RequireComponent(typeof(Rigidbody2D))]
+    [RequireComponent(typeof(CircleCollider2D))]
     public class FlappyMovement : MonoBehaviour
     {
         [SerializeField] [Range(0, 20f)] private float _jumpForce;
         [SerializeField] [Range(-5, 5f)] private float _xPositionMovement;
-        [SerializeField] [Range(0, 100f)] private float _rotationScale = 20;
+        [SerializeField] [Range(0, 100f)] private float _rotationMultiplier = 20;
         private Rigidbody2D _rigidbody2D;
 
         private void OnEnable()
@@ -38,7 +38,7 @@ namespace Movement
         private void RotateDown()
         {
 
-            transform.eulerAngles = new Vector3(0, 0, Mathf.Clamp(_rigidbody2D.velocity.y * _rotationScale, -80, 50));
+            transform.eulerAngles = new Vector3(0, 0, Mathf.Clamp(_rigidbody2D.velocity.y * _rotationMultiplier, -80, 50));
         }
     }
 }
