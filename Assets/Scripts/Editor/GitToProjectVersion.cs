@@ -88,11 +88,11 @@ namespace Editor
     {
         static InitializeOnLoad()
         {
-            PlayerSettings.bundleVersion = $"{System.DateTime.Now.Year}.{System.DateTime.Now.Month}.{System.DateTime.Now.Day}.{GitToProjectVersion.Branch}";
+            PlayerSettings.bundleVersion = $"[{System.DateTime.Now.Day}.{System.DateTime.Now.Month}.{System.DateTime.Now.Year}] commit:{GitToProjectVersion.Branch}";
             
             EditorApplication.quitting += () =>
             {
-                PlayerSettings.bundleVersion = $"{System.DateTime.Now.Year}.{System.DateTime.Now.Month}.{System.DateTime.Now.Day}.{GitToProjectVersion.Branch}";
+                PlayerSettings.bundleVersion = $"[{System.DateTime.Now.Day}.{System.DateTime.Now.Month}.{System.DateTime.Now.Year}] commit:{GitToProjectVersion.Branch}";
             };
         }
     }

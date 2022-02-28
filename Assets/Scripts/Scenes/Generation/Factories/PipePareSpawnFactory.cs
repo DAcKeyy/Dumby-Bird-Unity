@@ -7,12 +7,13 @@ using Object = UnityEngine.Object;
 
 namespace Scenes.Generation.Factories
 {
-    public class PipePareCreator : IFactory<Vector2 , PipePare>
+    public class PipePareSpawnFactory : IFactory<Vector2 , PipePare>
     {
         private readonly Pipe _pipe;
         private readonly float2 _themselvesDistance;
+        [Inject] private DiContainer _diContainer;
 
-        public PipePareCreator(PipePareSettings settings) {
+        public PipePareSpawnFactory(PipePareSettings settings) {
             _pipe = settings._prefab;
             _themselvesDistance = settings._themselvesDistance;
         }
@@ -25,15 +26,16 @@ namespace Scenes.Generation.Factories
                     position = position
                 }
             };
-            var upPipe = Object.Instantiate(_pipe, pipePare.transform);
-            var bottomPipe = Object.Instantiate(_pipe, pipePare.transform);
             
-            WidePipes(bottomPipe, upPipe);
+            var upPipe = _diContainer.InstantiatePrefab(_pipe, pipePare.transform);
+            var bottomPipe = _diContainer.InstantiatePrefab(_pipe, pipePare.transform);
+            
+            WidePipes(bottomPipe.GetComponent<Pipe>(), upPipe.GetComponent<Pipe>());
             
             var pare = pipePare.AddComponent<PipePare>();
             
             AddPareCollider(pare);
-            
+            _diContainer.Inject(pare);
             return pare;
         }
         

@@ -24,7 +24,7 @@ namespace Movement
 
         public void Jump()
         {
-            //TODO Синхронизировать работу из Update в FixedUpdate чтобы даблклика не было
+            //  TODO Синхронизировать работу из Update в FixedUpdate чтобы даблклика не было
             _rigidbody2D.velocity = Vector2.zero;
 
             _rigidbody2D.AddForce(Vector2.up * _jumpForce, ForceMode2D.Impulse);

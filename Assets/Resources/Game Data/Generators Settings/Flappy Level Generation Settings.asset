@@ -15,7 +15,8 @@ MonoBehaviour:
   _levelSettings:
     _pipeStartPositionX: 4
     _pipeDistance: 4
-    _pipesPoolAmount: 10
+    _pipesPoolAmount: 6
+    _pipesStartSkipAmount: 3
     _pipeSettings:
       _prefab: {fileID: 213859886116906223, guid: 433b4567e6a4f4c4ca7aadbe25e3c68a, type: 3}
       _themselvesDistance:

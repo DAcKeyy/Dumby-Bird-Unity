@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3723179586503452750}
   - component: {fileID: 6998176006861946713}
   - component: {fileID: 213719970908381759}
+  - component: {fileID: 8426322440471770276}
   m_Layer: 0
   m_Name: Bird
   m_TagString: Untagged
@@ -101,7 +102,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 3
   m_Material: {fileID: 0}
   m_Interpolate: 1
   m_SleepingMode: 1
@@ -221,6 +222,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5686d85c4504603469e5245188589e2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _jumpForce: 1
-  _xPositionMovement: 1
+  _jumpForce: 6
+  _xPositionMovement: 3
   _rotationMultiplier: 20
+--- !u!114 &8426322440471770276
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7702579299119311591}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fcfd7f9e98104f7b92b6ed8fc35b9987, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

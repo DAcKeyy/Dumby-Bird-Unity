@@ -158,7 +158,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -300}
+  m_AnchoredPosition: {x: 0, y: -188}
   m_SizeDelta: {x: 300, y: 300}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &126612562
@@ -712,7 +712,7 @@ GameObject:
   - component: {fileID: 1290738527}
   - component: {fileID: 1290738528}
   m_Layer: 0
-  m_Name: Level Generator Installer
+  m_Name: Flappy Bird Level Installer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -744,7 +744,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04dda622fa7f56f41a0f33e1416efc19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _type: 0
 --- !u!1 &1424342873
 GameObject:
   m_ObjectHideFlags: 0
@@ -915,26 +914,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 213719970908381759, guid: cac3e079ef7c97244a26f3d144bc7c69, type: 3}
-      propertyPath: _jumpForce
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 213719970908381759, guid: cac3e079ef7c97244a26f3d144bc7c69, type: 3}
-      propertyPath: _rotationScale
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 213719970908381759, guid: cac3e079ef7c97244a26f3d144bc7c69, type: 3}
-      propertyPath: _xPositionMovement
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 2881783276966058195, guid: cac3e079ef7c97244a26f3d144bc7c69, type: 3}
-      propertyPath: m_Mass
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2881783276966058195, guid: cac3e079ef7c97244a26f3d144bc7c69, type: 3}
-      propertyPath: m_GravityScale
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 6070706823788417783, guid: cac3e079ef7c97244a26f3d144bc7c69, type: 3}
       propertyPath: m_RootOrder
       value: 3
