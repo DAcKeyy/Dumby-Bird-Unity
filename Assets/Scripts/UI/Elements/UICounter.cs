@@ -2,7 +2,7 @@ using System;
 using TMPro;
 using UnityEngine;
 
-namespace UI
+namespace UI.Elements
 {
     [RequireComponent(typeof(TMP_Text))]
     public class UICounter : MonoBehaviour
@@ -12,7 +12,12 @@ namespace UI
         private TMP_Text _tmpText;
         private int _count = 0;
 
-        private void OnEnable() => _tmpText = GetComponent<TMP_Text>();
+        private void OnEnable()
+        {
+            _tmpText = GetComponent<TMP_Text>();
+            
+            if (_isCounter == true) SetNumber(_count);
+        }
 
         public int? GetCountValue
         {
@@ -33,10 +38,22 @@ namespace UI
         {
             _tmpText.text = _count++.ToString();
         }
+        
+        public void Increment(int amount)
+        {
+            _count += amount;
+            _tmpText.text = _count.ToString();
+        }
     
         public void Decrement()
         {
             _tmpText.text = _count--.ToString();
+        }        
+        
+        public void Decrement(int amount)
+        {
+            _count -= amount;
+            _tmpText.text = _count.ToString();
         }
     
         public void SetText(string value)

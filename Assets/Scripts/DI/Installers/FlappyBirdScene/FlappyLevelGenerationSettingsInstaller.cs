@@ -2,7 +2,7 @@
 using UnityEngine;
 using Zenject;
 
-namespace DI.Installers
+namespace DI.Installers.FlappyBirdScene
 {
     [CreateAssetMenu(fileName = "Flappy Level Generation Settings", menuName = "ScriptableObjects/Levels/FlappyBird", order = 1)]
     public class FlappyLevelGenerationSettingsInstaller : ScriptableObjectInstaller<FlappyLevelGenerationSettingsInstaller>

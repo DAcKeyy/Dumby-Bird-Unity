@@ -4,6 +4,12 @@ namespace Data.Saving
 {
     public static class GlobalPrefs
     {
+        public static int CurrentScore
+        {
+            get => PlayerPrefs.GetInt("CurrentScore", 0);
+            set => PlayerPrefs.SetInt("CurrentScore", value);
+        }
+        
         public static int BestScore {
             get => PlayerPrefs.GetInt("BestScore", 0);
             set => PlayerPrefs.SetInt("BestScore", value);

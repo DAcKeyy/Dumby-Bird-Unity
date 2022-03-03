@@ -1,20 +1,20 @@
-﻿using DI.Signals;
+using DI.Signals;
 using UnityEngine;
 using Zenject;
 
-namespace Scenes.Actors
+namespace Scenes.Actors.FlappyBird
 {
-    [RequireComponent(typeof(BoxCollider2D))]
-    public class Pipe : MonoBehaviour
+    public class Land : MonoBehaviour
     {
         [Inject] private SignalBus _signalBus;
-
+        
         private void OnCollisionEnter2D(Collision2D col)
         {
             //TODO Подумать как это скейлить
-            if (col.collider.GetComponent<Bird>() != null)
+            if (col.gameObject.GetComponent<Bird>() != null)
             {
-                _signalBus.TryFire(new PipeTouchedSignal(col));
+                //TODO Magic number
+                _signalBus.TryFire(new LandTouchedSignal(col));
             }
         }
     }

@@ -1,9 +1,8 @@
-using System;
 using UnityEngine;
 
 namespace Movement
 {
-    [RequireComponent(typeof(CircleCollider2D))]
+    [RequireComponent(typeof(CircleCollider2D), typeof(Rigidbody2D))]
     public class FlappyMovement : MonoBehaviour
     {
         [SerializeField] [Range(0, 20f)] private float _jumpForce;
@@ -25,6 +24,8 @@ namespace Movement
         public void Jump()
         {
             //  TODO Синхронизировать работу из Update в FixedUpdate чтобы даблклика не было
+            if(this.enabled == false) return;//UnityEventы могут вызывать методы в выключеных компонентах kekw0_0
+            
             _rigidbody2D.velocity = Vector2.zero;
 
             _rigidbody2D.AddForce(Vector2.up * _jumpForce, ForceMode2D.Impulse);

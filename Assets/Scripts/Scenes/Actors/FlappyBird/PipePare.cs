@@ -2,7 +2,7 @@
 using UnityEngine;
 using Zenject;
 
-namespace Scenes.Actors
+namespace Scenes.Actors.FlappyBird
 {
     public class PipePare : MonoBehaviour
     {

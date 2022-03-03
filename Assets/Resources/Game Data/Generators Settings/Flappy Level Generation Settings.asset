@@ -13,12 +13,20 @@ MonoBehaviour:
   m_Name: Flappy Level Generation Settings
   m_EditorClassIdentifier: 
   _levelSettings:
-    _pipeStartPositionX: 4
-    _pipeDistance: 4
-    _pipesPoolAmount: 6
-    _pipesStartSkipAmount: 3
-    _pipeSettings:
-      _prefab: {fileID: 213859886116906223, guid: 433b4567e6a4f4c4ca7aadbe25e3c68a, type: 3}
-      _themselvesDistance:
-        x: 1
-        y: 4
+    _pipePareGenerationSettings:
+      _pipeSettings:
+        _prefab: {fileID: 213859886116906223, guid: 433b4567e6a4f4c4ca7aadbe25e3c68a, type: 3}
+        _themselvesDistance:
+          x: 2
+          y: 4
+      _pipeStartPositionX: 3
+      _pipeDistance: 4
+      _pipesPoolAmount: 6
+      _pipesStartSkipAmount: 3
+    _landGenerationSettings:
+      _landSettings:
+        _land: {fileID: 375050719621393683, guid: 4523129e3b9dd124a96b76755e08dcc2, type: 3}
+      _landStartPositionX: -9
+      _landsDistance: 1
+      _landPoolAmount: 21
+      _landStartSkipAmount: 0
