@@ -114,7 +114,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _scoreValueText: {fileID: 8416327201918717262}
-  _scoreBestValueText: {fileID: 8416327201918717262}
+  _scoreBestValueText: {fileID: 8800872891655086891}
   _commentText: {fileID: 3768872138499060585}
   _okButton: {fileID: 379104241873573262}
 --- !u!1 &1233583101467578509

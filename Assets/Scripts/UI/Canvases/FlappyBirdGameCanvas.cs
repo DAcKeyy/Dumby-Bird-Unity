@@ -29,6 +29,7 @@ namespace UI.Canvases
                 }
                 else
                 {
+                    
                     gameObject.SetActive(true);
                 }
             });
