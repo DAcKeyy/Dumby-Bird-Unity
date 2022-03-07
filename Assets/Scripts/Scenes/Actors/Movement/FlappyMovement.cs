@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Movement
+namespace Scenes.Actors.Movement
 {
     [RequireComponent(typeof(CircleCollider2D), typeof(Rigidbody2D))]
     public class FlappyMovement : MonoBehaviour

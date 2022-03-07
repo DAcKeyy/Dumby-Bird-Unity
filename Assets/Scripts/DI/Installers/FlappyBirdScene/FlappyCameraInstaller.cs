@@ -1,4 +1,4 @@
-﻿using Camera;
+﻿using Scenes.Actors.Camera;
 using UnityEngine;
 using Zenject;
 

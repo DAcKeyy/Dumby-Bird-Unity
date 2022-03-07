@@ -17,16 +17,44 @@ MonoBehaviour:
       _pipeSettings:
         _prefab: {fileID: 213859886116906223, guid: 433b4567e6a4f4c4ca7aadbe25e3c68a, type: 3}
         _themselvesDistance:
-          x: 2
-          y: 4
-      _pipeStartPositionX: 3
+          min: 2
+          max: 4
+      _pipeStartPosition: {x: 3, y: 0}
       _pipeDistance: 4
       _pipesPoolAmount: 6
       _pipesStartSkipAmount: 3
     _landGenerationSettings:
       _landSettings:
-        _land: {fileID: 375050719621393683, guid: 4523129e3b9dd124a96b76755e08dcc2, type: 3}
-      _landStartPositionX: -9
+        _landPrefab: {fileID: 375050719621393683, guid: 4523129e3b9dd124a96b76755e08dcc2, type: 3}
+      _landStartPosition: {x: -4, y: -4}
       _landsDistance: 1
       _landPoolAmount: 21
-      _landStartSkipAmount: 0
+    _backgroundGenerationSettings:
+      _cloudsSettings:
+        _cloudPrefab: {fileID: 2857803169614849340, guid: 9a62bcbe5ae5ccd4c8c3865f8ddabaf6, type: 3}
+        _cloudSprite: {fileID: 21300000, guid: c73dfb5e0fa283542988e3a26d5c163b, type: 3}
+      _cloudsStartPosition: {x: -4, y: -3}
+      _cloudsDistance: 3
+      _cloudsPoolAmount: 6
+      _buildingsSettings:
+        _distanceInCluster: 0.35
+        _buildingsInCluster:
+          min: 2
+          max: 5
+        _buildHeight:
+          min: -5
+          max: -3
+        _buildingsSprites:
+        - {fileID: 21300000, guid: dc483558e2a65574f9586047bfd9fdd0, type: 3}
+        - {fileID: 21300000, guid: 3f2dba4795e155f4d8259f979a89e74e, type: 3}
+        - {fileID: 21300000, guid: e6d53d3c564ed9049827b3ae8f864e78, type: 3}
+        _buildingPrefab: {fileID: 3287616081317211555, guid: 96efae99c4c34854f95db266a4426cdc, type: 3}
+      _buildingsStartPosition: {x: -4, y: 0}
+      _buildingDistance: 2
+      _buildingsPoolAmount: 10
+      _bushesSettings:
+        _bushPrefab: {fileID: 7743073334678220521, guid: 5949fbd47428d704191516008fa0562f, type: 3}
+        _bushSprite: {fileID: 21300000, guid: 53dccce6656872644b6a7e44f2c9a0ec, type: 3}
+      _bushesStartPosition: {x: -4, y: -3.5}
+      _bushesDistance: 3
+      _bushesPoolAmount: 6

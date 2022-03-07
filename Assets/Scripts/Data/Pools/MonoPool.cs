@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Pools
+namespace Data.Pools
 {
     public class MonoPool<T> where T : MonoBehaviour
     {

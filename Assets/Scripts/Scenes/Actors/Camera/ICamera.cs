@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Camera
+namespace Scenes.Actors.Camera
 {
     public interface ICamera
     {

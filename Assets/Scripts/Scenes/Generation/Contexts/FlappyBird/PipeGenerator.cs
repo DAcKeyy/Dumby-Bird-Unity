@@ -1,12 +1,12 @@
 ﻿using Data.Generators;
-using Pools;
+using Data.Pools;
 using Scenes.Actors.FlappyBird;
 using Scenes.Generation.Base;
 using Scenes.Generation.Factories;
 using UnityEngine;
 using Vector2 = UnityEngine.Vector2;
 
-namespace Scenes.Generation.Contexts
+namespace Scenes.Generation.Contexts.FlappyBird
 {
     public class PipeGenerator : ILevelGenerator
     {
@@ -33,8 +33,8 @@ namespace Scenes.Generation.Contexts
             {
                 _pipeParePool.AddObject(
                     _pipePareSpawnFactory.Create(new Vector2(
-                        _pipeParesSettings.PipeStartPositionX + _pipeParesSettings.PipeDistance * i, 
-                        0f)));
+                        _pipeParesSettings.PipeStartPosition.x + _pipeParesSettings.PipeDistance * i, 
+                        _pipeParesSettings.PipeStartPosition.y)));
             }
             _pipesCount = _pipeParesSettings.PipesPoolAmount;
         }
@@ -54,8 +54,8 @@ namespace Scenes.Generation.Contexts
             //делаем новую впереди
             _pipeParePool.AddObject(
                 _pipePareSpawnFactory.Create(new Vector2(
-                    _pipeParesSettings.PipeStartPositionX + _pipeParesSettings.PipeDistance * _pipesCount++,
-                    0f)));
+                    _pipeParesSettings.PipeStartPosition.x + _pipeParesSettings.PipeDistance * _pipesCount++,
+                    _pipeParesSettings.PipeStartPosition.y)));
         }
     }
 }

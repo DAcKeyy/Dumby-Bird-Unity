@@ -1,5 +1,5 @@
 ﻿using DI.Signals;
-using Movement;
+using Scenes.Actors.Movement;
 using UnityEngine;
 using Zenject;
 

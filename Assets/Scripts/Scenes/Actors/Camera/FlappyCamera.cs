@@ -3,7 +3,7 @@ using DI.Signals;
 using UnityEngine;
 using Zenject;
 
-namespace Camera
+namespace Scenes.Actors.Camera
 {
     [RequireComponent(typeof(CinemachineVirtualCamera))]
     public class FlappyCamera : MonoBehaviour , ICamera

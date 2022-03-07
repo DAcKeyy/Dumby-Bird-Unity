@@ -1,4 +1,5 @@
 ﻿using System;
+using Data.Extensions;
 using Scenes.Actors;
 using Scenes.Actors.FlappyBird;
 using Unity.Mathematics;
@@ -13,17 +14,23 @@ namespace Scenes.Generation.Factories
         private readonly Pipe _pipe;
         private readonly float2 _themselvesDistance;
         [Inject] private DiContainer _diContainer;
+        private readonly GameObject _pipesParent;
 
         public PipePareSpawnFactory(PipePareSettings settings) {
             _pipe = settings._prefab;
-            _themselvesDistance = settings._themselvesDistance;
+            _themselvesDistance = new float2(settings._themselvesDistance.min, settings._themselvesDistance.max);
+            _pipesParent = new GameObject("Pipes") {
+                transform = {
+                    position = Vector3.zero,
+                }
+            };
         }
         
         public PipePare Create(Vector2 position)
         {
             var pipePare = new GameObject("Pipe Pare") {
                 transform = {
-                    parent = null, 
+                    parent = _pipesParent.transform, 
                     position = position
                 }
             };
@@ -71,7 +78,7 @@ namespace Scenes.Generation.Factories
         [Serializable]
         public struct PipePareSettings {
             public Pipe _prefab;
-            public float2 _themselvesDistance;
+            public MinMaxFloat _themselvesDistance;
         }
     }
 }

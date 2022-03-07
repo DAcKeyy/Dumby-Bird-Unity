@@ -1,10 +1,9 @@
 using Data.Generators;
 using Data.Saving;
 using DI.Signals;
-using Scenes.Actors;
 using Scenes.Actors.FlappyBird;
 using Scenes.Generation.Base;
-using Scenes.Generation.Contexts;
+using Scenes.Generation.Contexts.FlappyBird;
 using Scenes.Generation.Factories;
 using UnityEngine;
 using Zenject;
@@ -18,6 +17,7 @@ namespace DI.Installers.FlappyBirdScene
 
         public override void InstallBindings()
         {
+            //TODO: GlobalPrefs :)
             GlobalPrefs.CurrentScore = 0;
             
             SignalBusInstaller.Install(Container);
@@ -26,22 +26,28 @@ namespace DI.Installers.FlappyBirdScene
             Container.DeclareSignal<BirdDiedSignal>();
             Container.DeclareSignal<GamePauseSignal>();
             Container.DeclareSignal<LandTouchedSignal>();
-            
-            Container.BindSignal<GamePointObtainedSignal>().ToMethod(x => 
-                GlobalPrefs.CurrentScore += x.PointsAmount);
-            
-            Container.BindSignal<BirdDiedSignal>().ToMethod(x => {
-                if (GlobalPrefs.BestScore < GlobalPrefs.CurrentScore) 
-                    GlobalPrefs.BestScore = GlobalPrefs.CurrentScore; });
-            
+
+            //TODO: GlobalPrefs :)
+            Container.BindSignal<GamePointObtainedSignal>().ToMethod(x => {
+                if (GlobalPrefs.BestScore < GlobalPrefs.CurrentScore)
+                    GlobalPrefs.BestScore = GlobalPrefs.CurrentScore;
+                
+                GlobalPrefs.CurrentScore += x.PointsAmount;
+            });
+
             Container.Bind<Bird>().FromInstance(_bird).AsSingle().NonLazy();
+            
             Container.Bind<PipePareSpawnFactory>().AsSingle().WithArguments(_settings._pipePareGenerationSettings.PipeSettings);
             Container.Bind<LandSpawnFactory>().AsSingle().WithArguments(_settings._landGenerationSettings.LandSettings);
+            Container.Bind<BuildingsFactory>().AsSingle().WithArguments(_settings._backgroundGenerationSettings.BuildingsSettings);
+            Container.Bind<CloudsFactory>().AsSingle().WithArguments(_settings._backgroundGenerationSettings.CloudsSettings);
+            Container.Bind<BushesFactory>().AsSingle().WithArguments(_settings._backgroundGenerationSettings.BushesSettings);
+            
             Container.Bind<ILevelGenerator>().
                 To<FlappyLevelGenerator>().
                 FromNew().
                 AsSingle().
-                WithArguments(_settings);
+                WithArguments(_settings, _bird);
         }
     }
 }
