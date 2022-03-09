@@ -1,5 +1,6 @@
 ﻿using DI.Signals;
 using UnityEngine;
+using UnityEngine.Events;
 using Zenject;
 
 namespace Scenes.Actors.FlappyBird

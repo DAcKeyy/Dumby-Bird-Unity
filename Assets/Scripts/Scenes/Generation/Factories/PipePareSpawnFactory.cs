@@ -34,7 +34,6 @@ namespace Scenes.Generation.Factories
                     position = position
                 }
             };
-            
             var upPipe = _diContainer.InstantiatePrefab(_pipe, pipePare.transform);
             var bottomPipe = _diContainer.InstantiatePrefab(_pipe, pipePare.transform);
             
@@ -53,12 +52,12 @@ namespace Scenes.Generation.Factories
             
             bottomPipe.transform.position = new Vector2(
                 bottomPipe.transform.position.x,
-                -yDistance / 2); // -y / 2
+                bottomPipe.transform.position.y + -yDistance / 2); // -y / 2
             
             
             upPipe.transform.position = new Vector2(
                 upPipe.transform.position.x,
-                yDistance / 2);// +y / 2
+                upPipe.transform.position.y + yDistance / 2);// +y / 2
             
             //TODO Убрать магическое число
             upPipe.transform.eulerAngles = new Vector3(

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Scenes.Actors.Movement
 {
@@ -8,6 +9,7 @@ namespace Scenes.Actors.Movement
         [SerializeField] [Range(0, 20f)] private float _jumpForce;
         [SerializeField] [Range(-5, 5f)] private float _xPositionMovement;
         [SerializeField] [Range(0, 100f)] private float _rotationMultiplier = 20;
+        [SerializeField] private UnityEvent _jumpEvent;
         private Rigidbody2D _rigidbody2D;
 
         private void OnEnable()
@@ -23,7 +25,10 @@ namespace Scenes.Actors.Movement
 
         public void Jump()
         {
-            //  TODO Синхронизировать работу из Update в FixedUpdate чтобы даблклика не было
+            //TODO: Синхронизировать работу из Update в FixedUpdate чтобы даблклика не было
+            
+            _jumpEvent.Invoke();
+            
             if(this.enabled == false) return;//UnityEventы могут вызывать методы в выключеных компонентах kekw0_0
             
             _rigidbody2D.velocity = Vector2.zero;
@@ -38,8 +43,8 @@ namespace Scenes.Actors.Movement
 
         private void RotateDown()
         {
-
-            transform.eulerAngles = new Vector3(0, 0, Mathf.Clamp(_rigidbody2D.velocity.y * _rotationMultiplier, -80, 50));
+            //TODO: Remove magic number
+            transform.eulerAngles = new Vector3(0, 0, Mathf.Clamp(_rigidbody2D.velocity.y * (_rotationMultiplier / 2), -80, 50));
         }
     }
 }

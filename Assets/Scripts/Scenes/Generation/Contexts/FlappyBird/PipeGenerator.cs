@@ -13,28 +13,33 @@ namespace Scenes.Generation.Contexts.FlappyBird
         private readonly PipePareSpawnFactory _pipePareSpawnFactory;
         private readonly FlappyLevelGenerationSettings.PipePareGenerationSettings _pipeParesSettings;
         private readonly MonoPool<PipePare> _pipeParePool;
+        private readonly Vector2 _startPosition;
         
         private int _startPipesSkipCount;//сколько пар было пропущено в начале (чтобы последняя не исчезала сразу)
         private int _pipesCount;//сколько пар труб было заспаунено
-        
+
         public PipeGenerator( 
             FlappyLevelGenerationSettings.PipePareGenerationSettings pipeSettings, 
-            PipePareSpawnFactory pipePareSpawnFactory)
+            PipePareSpawnFactory pipePareSpawnFactory,
+            Vector2 startPosition)
         {
             _pipeParesSettings = pipeSettings;
             _pipePareSpawnFactory = pipePareSpawnFactory;
+            _startPosition = startPosition;
             _pipeParePool = new MonoPool<PipePare>();
             _startPipesSkipCount = pipeSettings.PipesStartSkipAmount;
         }
-        
+
         public void Create()
         {
             for (var i = 0; i < _pipeParesSettings.PipesPoolAmount; i++)
             {
+                float yOffset = 0;
+                if (i != 0) yOffset = Random.Range(-_pipeParesSettings.PipeYOffset, _pipeParesSettings.PipeYOffset);
                 _pipeParePool.AddObject(
                     _pipePareSpawnFactory.Create(new Vector2(
-                        _pipeParesSettings.PipeStartPosition.x + _pipeParesSettings.PipeDistance * i, 
-                        _pipeParesSettings.PipeStartPosition.y)));
+                        _pipeParesSettings.PipeStartPosition.x + _startPosition.x + _pipeParesSettings.PipeDistance * i, 
+                        _pipeParesSettings.PipeStartPosition.y + _startPosition.y + yOffset)));
             }
             _pipesCount = _pipeParesSettings.PipesPoolAmount;
         }
@@ -52,10 +57,11 @@ namespace Scenes.Generation.Contexts.FlappyBird
             _pipeParePool.PrefabPool.RemoveAt(0);
 
             //делаем новую впереди
+            var yOffset = Random.Range(-_pipeParesSettings.PipeYOffset, _pipeParesSettings.PipeYOffset);
             _pipeParePool.AddObject(
                 _pipePareSpawnFactory.Create(new Vector2(
-                    _pipeParesSettings.PipeStartPosition.x + _pipeParesSettings.PipeDistance * _pipesCount++,
-                    _pipeParesSettings.PipeStartPosition.y)));
+                    _pipeParesSettings.PipeStartPosition.x + _startPosition.x + _pipeParesSettings.PipeDistance * _pipesCount++,
+                    _pipeParesSettings.PipeStartPosition.y + _startPosition.y + yOffset)));
         }
     }
 }

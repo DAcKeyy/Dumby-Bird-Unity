@@ -1,6 +1,7 @@
 ﻿using DI.Signals;
 using Scenes.Actors.Movement;
 using UnityEngine;
+using UnityEngine.Events;
 using Zenject;
 
 namespace Scenes.Actors.FlappyBird
@@ -8,6 +9,7 @@ namespace Scenes.Actors.FlappyBird
     [RequireComponent(typeof(FlappyMovement))]
     public class Bird : MonoBehaviour
     {
+        [SerializeField] private UnityEvent _dieEvent;
         private SignalBus _signalBus;
         
         [Inject]
@@ -37,6 +39,7 @@ namespace Scenes.Actors.FlappyBird
 
         public void Die()
         {
+            _dieEvent.Invoke();
             //TODO Анимация смээрти
             GetComponent<FlappyMovement>().enabled = false;
             GetComponent<Collider2D>().isTrigger = true;

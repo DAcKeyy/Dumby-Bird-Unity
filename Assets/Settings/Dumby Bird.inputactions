@@ -11,7 +11,7 @@
                     "id": "7efb14f8-f6e5-4224-b55a-178a041377e4",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "Press",
+                    "interactions": "Press(behavior=1)",
                     "initialStateCheck": false
                 }
             ],
@@ -20,7 +20,7 @@
                     "name": "",
                     "id": "cbad8200-c409-45d8-9204-fedf7b42a1ca",
                     "path": "<Keyboard>/space",
-                    "interactions": "",
+                    "interactions": "Tap",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
                     "action": "Jump",

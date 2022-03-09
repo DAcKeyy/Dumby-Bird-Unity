@@ -18,9 +18,10 @@ MonoBehaviour:
         _prefab: {fileID: 213859886116906223, guid: 433b4567e6a4f4c4ca7aadbe25e3c68a, type: 3}
         _themselvesDistance:
           min: 2
-          max: 4
+          max: 3
       _pipeStartPosition: {x: 3, y: 0}
       _pipeDistance: 4
+      _pipeYOffset: 2
       _pipesPoolAmount: 6
       _pipesStartSkipAmount: 3
     _landGenerationSettings:
@@ -33,7 +34,7 @@ MonoBehaviour:
       _cloudsSettings:
         _cloudPrefab: {fileID: 2857803169614849340, guid: 9a62bcbe5ae5ccd4c8c3865f8ddabaf6, type: 3}
         _cloudSprite: {fileID: 21300000, guid: c73dfb5e0fa283542988e3a26d5c163b, type: 3}
-      _cloudsStartPosition: {x: -4, y: -3}
+      _cloudsStartPosition: {x: -4, y: -2.8}
       _cloudsDistance: 3
       _cloudsPoolAmount: 6
       _buildingsSettings:
@@ -55,6 +56,6 @@ MonoBehaviour:
       _bushesSettings:
         _bushPrefab: {fileID: 7743073334678220521, guid: 5949fbd47428d704191516008fa0562f, type: 3}
         _bushSprite: {fileID: 21300000, guid: 53dccce6656872644b6a7e44f2c9a0ec, type: 3}
-      _bushesStartPosition: {x: -4, y: -3.5}
+      _bushesStartPosition: {x: -4, y: -3.55}
       _bushesDistance: 3
       _bushesPoolAmount: 6

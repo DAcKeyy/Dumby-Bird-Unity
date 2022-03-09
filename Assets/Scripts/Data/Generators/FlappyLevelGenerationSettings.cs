@@ -52,12 +52,14 @@ namespace Data.Generators
             public PipePareSpawnFactory.PipePareSettings PipeSettings => _pipeSettings;
             public Vector2 PipeStartPosition => _pipeStartPosition;
             public float PipeDistance => _pipeDistance;
+            public float PipeYOffset => _pipeYOffset;
             public int PipesPoolAmount => _pipesPoolAmount;
             public int PipesStartSkipAmount => _pipesStartSkipAmount;
 
             [SerializeField] private PipePareSpawnFactory.PipePareSettings _pipeSettings;
             [SerializeField] private Vector2 _pipeStartPosition = new Vector2(3f, 0);
             [SerializeField] [Range(1,5f)] private float _pipeDistance = 4f;
+            [SerializeField] [Range(1,5f)] private float _pipeYOffset = 2f;
             [SerializeField] [Range(5,20)] private int _pipesPoolAmount = 6;
             [SerializeField] [Range(1,5)] private int _pipesStartSkipAmount = 3;
         }
