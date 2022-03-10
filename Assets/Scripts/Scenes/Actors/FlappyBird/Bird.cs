@@ -2,6 +2,7 @@
 using Scenes.Actors.Movement;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.InputSystem;
 using Zenject;
 
 namespace Scenes.Actors.FlappyBird
@@ -18,8 +19,13 @@ namespace Scenes.Actors.FlappyBird
             _signalBus = signalBus;
             
             //TODO: Должна ли птица знать о сигналах?
-            _signalBus.Subscribe<PipeTouchedSignal>(x =>
+            GetComponent<PlayerInput>().onControlsChanged += context =>
             {
+                //print(context.);
+            };
+            
+
+            _signalBus.Subscribe<PipeTouchedSignal>(x => {
                 //TODO Исправить двойную проверку что тут, что в трубе
                 if (x.CollisionObj2D.collider.GetComponent<Bird>() != null)
                 {
@@ -27,8 +33,7 @@ namespace Scenes.Actors.FlappyBird
                 }
             });
             
-            _signalBus.Subscribe<LandTouchedSignal>(x =>
-            {
+            _signalBus.Subscribe<LandTouchedSignal>(x => {
                 //TODO Исправить двойную проверку что тут, что на земле
                 if (x.CollisionObj2D.collider.GetComponent<Bird>() != null)
                 {

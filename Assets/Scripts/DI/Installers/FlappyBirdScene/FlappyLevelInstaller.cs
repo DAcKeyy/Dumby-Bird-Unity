@@ -9,6 +9,7 @@ using Scenes.Generation.Contexts.FlappyBird;
 using Scenes.Generation.Factories;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.InputSystem;
 using Zenject;
 
 namespace DI.Installers.FlappyBirdScene

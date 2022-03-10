@@ -214,7 +214,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 148795725}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.062736616, y: 0.08333266, z: -10}
+  m_LocalPosition: {x: -0.052083336, y: 0.08333266, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 897110301}
@@ -778,7 +778,6 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   _bird: {fileID: 43918728}
-  _secondsTapRepeat: 0.55
 --- !u!1 &1424342873
 GameObject:
   m_ObjectHideFlags: 0
@@ -953,6 +952,34 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6998176006861946713, guid: cac3e079ef7c97244a26f3d144bc7c69, type: 3}
+      propertyPath: m_ActionEvents.Array.data[0].m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6998176006861946713, guid: cac3e079ef7c97244a26f3d144bc7c69, type: 3}
+      propertyPath: m_ActionEvents.Array.data[0].m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6998176006861946713, guid: cac3e079ef7c97244a26f3d144bc7c69, type: 3}
+      propertyPath: m_ActionEvents.Array.data[0].m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1654838664}
+    - target: {fileID: 6998176006861946713, guid: cac3e079ef7c97244a26f3d144bc7c69, type: 3}
+      propertyPath: m_ActionEvents.Array.data[0].m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6998176006861946713, guid: cac3e079ef7c97244a26f3d144bc7c69, type: 3}
+      propertyPath: m_ActionEvents.Array.data[0].m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: ChangeState
+      objectReference: {fileID: 0}
+    - target: {fileID: 6998176006861946713, guid: cac3e079ef7c97244a26f3d144bc7c69, type: 3}
+      propertyPath: m_ActionEvents.Array.data[0].m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: Scenes.Actors.Movement.FlappyMovement, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6998176006861946713, guid: cac3e079ef7c97244a26f3d144bc7c69, type: 3}
+      propertyPath: m_ActionEvents.Array.data[0].m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 7702579299119311591, guid: cac3e079ef7c97244a26f3d144bc7c69, type: 3}
       propertyPath: m_Name
       value: Bird
@@ -1124,6 +1151,17 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1654838664 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 213719970908381759, guid: cac3e079ef7c97244a26f3d144bc7c69, type: 3}
+  m_PrefabInstance: {fileID: 1654838661}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1654838662}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5686d85c4504603469e5245188589e2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1654838665 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6998176006861946713, guid: cac3e079ef7c97244a26f3d144bc7c69, type: 3}
