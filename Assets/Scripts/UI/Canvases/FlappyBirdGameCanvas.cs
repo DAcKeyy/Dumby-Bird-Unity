@@ -19,6 +19,7 @@ namespace UI.Canvases
         {
             //TODO Добавить посередник между канвасами
             _signalBus = signalBus;
+            _signalBus.Subscribe<GameStarted>(x => gameObject.SetActive(true));
             _signalBus.Subscribe<GamePointObtainedSignal>(x => _scoreCounter.Increment(x.PointsAmount));
             _signalBus.Subscribe<BirdDiedSignal>(x => gameObject.SetActive(false));
             _signalBus.Subscribe<GamePauseSignal>(x =>

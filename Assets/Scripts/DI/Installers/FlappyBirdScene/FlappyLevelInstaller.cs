@@ -1,4 +1,3 @@
-using System.Collections;
 using Data.Generators;
 using Data.Saving;
 using DI.Signals;
@@ -9,7 +8,6 @@ using Scenes.Generation.Contexts.FlappyBird;
 using Scenes.Generation.Factories;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.InputSystem;
 using Zenject;
 
 namespace DI.Installers.FlappyBirdScene
@@ -36,10 +34,12 @@ namespace DI.Installers.FlappyBirdScene
 
             //TODO: GlobalPrefs :)
             Container.BindSignal<GamePointObtainedSignal>().ToMethod(x => {
-                if (GlobalPrefs.BestScore < GlobalPrefs.CurrentScore)
-                    GlobalPrefs.BestScore = GlobalPrefs.CurrentScore;
+                if(!_bird.IsAlive) return;
                 
                 GlobalPrefs.CurrentScore += x.PointsAmount;
+                
+                if (GlobalPrefs.BestScore < GlobalPrefs.CurrentScore)
+                    GlobalPrefs.BestScore = GlobalPrefs.CurrentScore;
                 
                 _gamePointObtained.Invoke();
             });
@@ -54,6 +54,10 @@ namespace DI.Installers.FlappyBirdScene
                 _gamePlaying.Invoke(false);
             });
 
+            Container.BindSignal<GameStarted>().ToMethod(x => {
+                _bird.GetComponent<FlappyMovement>().ChangeState(2);
+            });
+
             Container.Bind<Bird>().FromInstance(_bird).AsSingle().NonLazy();
             
             Container.Bind<PipePareSpawnFactory>().AsSingle().WithArguments(_settings._pipePareGenerationSettings.PipeSettings);
@@ -62,11 +66,7 @@ namespace DI.Installers.FlappyBirdScene
             Container.Bind<CloudsFactory>().AsSingle().WithArguments(_settings._backgroundGenerationSettings.CloudsSettings);
             Container.Bind<BushesFactory>().AsSingle().WithArguments(_settings._backgroundGenerationSettings.BushesSettings);
             
-            Container.Bind<ILevelGenerator>().
-                To<FlappyLevelGenerator>().
-                FromNew().
-                AsSingle().
-                WithArguments(_settings, _bird);
+            Container.Bind<ILevelGenerator>().To<FlappyLevelGenerator>().FromNew().AsSingle().WithArguments(_settings, _bird);
         }
     }
 }

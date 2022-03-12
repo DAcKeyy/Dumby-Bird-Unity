@@ -134,7 +134,7 @@ PlayerSettings:
     16:10: 1
     16:9: 1
     Others: 1
-  bundleVersion: '[10.3.2022] commit:b956a29'
+  bundleVersion: '[13.3.2022] commit:a42e806'
   preloadedAssets:
   - {fileID: 11400000, guid: abf24643e7aa2da438046cfed653c04a, type: 2}
   metroInputSource: 0

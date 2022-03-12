@@ -10,8 +10,10 @@ namespace Scenes.Actors.FlappyBird
     [RequireComponent(typeof(FlappyMovement))]
     public class Bird : MonoBehaviour
     {
+        public bool IsAlive => !_isDied;
         [SerializeField] private UnityEvent _dieEvent;
         private SignalBus _signalBus;
+        private bool _isDied;
         
         [Inject]
         public void Init(SignalBus signalBus)
@@ -44,11 +46,14 @@ namespace Scenes.Actors.FlappyBird
 
         public void Die()
         {
+            if(_isDied) return;
             _dieEvent.Invoke();
+            _isDied = true;
             //TODO Анимация смээрти
             GetComponent<FlappyMovement>().enabled = false;
-            GetComponent<Collider2D>().isTrigger = true;
+            //GetComponent<Collider2D>().isTrigger = true;
             _signalBus.TryFire<BirdDiedSignal>();
+            
         }
     }
 }

@@ -396,7 +396,7 @@ GameObject:
   - component: {fileID: 523258055}
   m_Layer: 0
   m_Name: Scene Context DI
-  m_TagString: GameController
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -415,6 +415,7 @@ Transform:
   - {fileID: 1290738527}
   - {fileID: 747651818}
   - {fileID: 1914359650}
+  - {fileID: 1166359290}
   m_Father: {fileID: 798894821}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -436,6 +437,7 @@ MonoBehaviour:
   - {fileID: 1290738528}
   - {fileID: 747651819}
   - {fileID: 1914359651}
+  - {fileID: 1166359291}
   _installerPrefabs: []
   _autoRun: 1
   OnPreInstall:
@@ -465,7 +467,7 @@ GameObject:
   - component: {fileID: 747651819}
   m_Layer: 0
   m_Name: Flappy UI Installer
-  m_TagString: GameController
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -499,6 +501,7 @@ MonoBehaviour:
   _gameCanvas: {fileID: 1443474256238944149, guid: 7dfadf98a8a3c00478445006ff5b737e, type: 3}
   _gameOverCanvas: {fileID: 1005713129746788891, guid: 5d4671a234019464f99e1636c77dbcd5, type: 3}
   _gamePauseCanvas: {fileID: 1873060740567864168, guid: dc1ee700568f2a24e942faebb4afb21d, type: 3}
+  _preGameCanvas: {fileID: 2385738450730048575, guid: 9eddda4c20929f345b25868dab0b8db8, type: 3}
 --- !u!1 &798894820
 GameObject:
   m_ObjectHideFlags: 0
@@ -617,6 +620,67 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd91c0c4a7054970bf3f6bdd52b82ff4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1166359289
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1166359290}
+  - component: {fileID: 1166359291}
+  - component: {fileID: 1166359292}
+  m_Layer: 0
+  m_Name: Flappy Scene State Installer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1166359290
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1166359289}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 523258054}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1166359291
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1166359289}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3637fcf91c0e8b74cb5cf1f985efb916, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _flappyBirdStateMachine: {fileID: 1166359292}
+  _playerControls: {fileID: -944628639613478452, guid: d565c5ce5ebd5114d937842f8e4c44c5, type: 3}
+--- !u!114 &1166359292
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1166359289}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a368f4fe6bd44082bbb51eb0b1bf6322, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _stateChanged:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1274583990
 GameObject:
   m_ObjectHideFlags: 0
@@ -630,7 +694,7 @@ GameObject:
   - component: {fileID: 1274583992}
   m_Layer: 0
   m_Name: EventSystem
-  m_TagString: GameController
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -704,7 +768,7 @@ GameObject:
   - component: {fileID: 1290738528}
   m_Layer: 0
   m_Name: Flappy Bird Level Installer
-  m_TagString: GameController
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -790,7 +854,7 @@ GameObject:
   - component: {fileID: 1424342874}
   m_Layer: 0
   m_Name: Level Generator
-  m_TagString: GameController
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -828,6 +892,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 213719970908381759, guid: cac3e079ef7c97244a26f3d144bc7c69, type: 3}
+      propertyPath: _xPositionMovement
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 213719970908381759, guid: cac3e079ef7c97244a26f3d144bc7c69, type: 3}
       propertyPath: _jumpEvent.m_PersistentCalls.m_Calls.Array.size
       value: 2
@@ -1047,6 +1115,22 @@ PrefabInstance:
     - target: {fileID: 8426322440471770276, guid: cac3e079ef7c97244a26f3d144bc7c69, type: 3}
       propertyPath: _dieEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 8443623158211499350, guid: cac3e079ef7c97244a26f3d144bc7c69, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8443623158211499350, guid: cac3e079ef7c97244a26f3d144bc7c69, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8443623158211499350, guid: cac3e079ef7c97244a26f3d144bc7c69, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8443623158211499350, guid: cac3e079ef7c97244a26f3d144bc7c69, type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cac3e079ef7c97244a26f3d144bc7c69, type: 3}

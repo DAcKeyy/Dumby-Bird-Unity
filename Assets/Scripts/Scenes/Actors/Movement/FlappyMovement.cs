@@ -7,32 +7,19 @@ namespace Scenes.Actors.Movement
     [RequireComponent(typeof(CircleCollider2D), typeof(Rigidbody2D))]
     public class FlappyMovement : MonoBehaviour
     {
-        public MovementState State { get; private set; } = MovementState.Fly;
+        public MovementState State => _state;
         
+        [SerializeField] private MovementState _state = MovementState.Fly;
         [SerializeField] [Range(0, 20f)] private float _jumpForce;
         [SerializeField] [Range(-5, 5f)] private float _xPositionMovement;
         [SerializeField] [Range(0, 100f)] private float _rotationMultiplier = 20;
         [SerializeField] private UnityEvent _jumpEvent;
         private Rigidbody2D _rigidbody2D;
-        
-        public void ChangeState(int state)
-        {
-            switch ((MovementState) state)
-            {
-                case MovementState.Fly:
-                    State = MovementState.Fly;
-                    _rigidbody2D.bodyType = RigidbodyType2D.Kinematic;
-                    break;
-                case MovementState.Falling:
-                    State = MovementState.Falling;
-                    _rigidbody2D.bodyType = RigidbodyType2D.Dynamic;
-                    break;
-            }
-        }
-        
+
         private void Awake()
         {
             _rigidbody2D = GetComponent<Rigidbody2D>();
+            ChangeState((int)_state);
         }
 
         private void FixedUpdate()
@@ -43,7 +30,7 @@ namespace Scenes.Actors.Movement
 
         public void Jump()
         {
-            if(State == MovementState.Fly) return;
+            if(_state == MovementState.Fly) return;
             if(this.enabled == false) return;//UnityEventы могут вызывать методы в выключеных компонентах kekw0_0
             
             _jumpEvent.Invoke();
@@ -51,6 +38,21 @@ namespace Scenes.Actors.Movement
             _rigidbody2D.AddForce(Vector2.up * _jumpForce, ForceMode2D.Impulse);
         }
 
+        public void ChangeState(int state)
+        {
+            switch ((MovementState) state)
+            {
+                case MovementState.Fly:
+                    _state = MovementState.Fly;
+                    _rigidbody2D.bodyType = RigidbodyType2D.Kinematic;
+                    break;
+                case MovementState.Falling:
+                    _state = MovementState.Falling;
+                    _rigidbody2D.bodyType = RigidbodyType2D.Dynamic;
+                    Jump();
+                    break;
+            }
+        }
 
         private void MoveToward(Vector2 direction)
         {
