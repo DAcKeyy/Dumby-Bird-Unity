@@ -1,4 +1,3 @@
-using System.Collections;
 using Data.Generators;
 using Data.Saving;
 using DI.Signals;
@@ -18,7 +17,6 @@ namespace DI.Installers.FlappyBirdScene
         [SerializeField] private UnityEvent _gamePointObtained;
         [SerializeField] private UnityEvent<bool> _gamePlaying;
         [SerializeField] private Bird _bird;
-        [SerializeField] private InvisibleBorder2D _invisibleBorder2D;
         [Inject] private FlappyLevelGenerationSettings _settings;
         
         public override void InstallBindings()
@@ -36,10 +34,12 @@ namespace DI.Installers.FlappyBirdScene
 
             //TODO: GlobalPrefs :)
             Container.BindSignal<GamePointObtainedSignal>().ToMethod(x => {
-                if (GlobalPrefs.BestScore < GlobalPrefs.CurrentScore)
-                    GlobalPrefs.BestScore = GlobalPrefs.CurrentScore;
+                if(!_bird.IsAlive) return;
                 
                 GlobalPrefs.CurrentScore += x.PointsAmount;
+                
+                if (GlobalPrefs.BestScore < GlobalPrefs.CurrentScore)
+                    GlobalPrefs.BestScore = GlobalPrefs.CurrentScore;
                 
                 _gamePointObtained.Invoke();
             });
@@ -49,12 +49,16 @@ namespace DI.Installers.FlappyBirdScene
                 _gamePlaying.Invoke(!x.Paused);
             });
 
+            //TODO: Убрать это
             Container.BindSignal<BirdDiedSignal>().ToMethod(x => {
                 _gamePlaying.Invoke(false);
             });
 
+            Container.BindSignal<GameStarted>().ToMethod(x => {
+                _bird.GetComponent<FlappyMovement>().ChangeState(2);
+            });
+
             Container.Bind<Bird>().FromInstance(_bird).AsSingle().NonLazy();
-            Container.Bind<InvisibleBorder2D>().FromInstance(_invisibleBorder2D).AsSingle().NonLazy();
             
             Container.Bind<PipePareSpawnFactory>().AsSingle().WithArguments(_settings._pipePareGenerationSettings.PipeSettings);
             Container.Bind<LandSpawnFactory>().AsSingle().WithArguments(_settings._landGenerationSettings.LandSettings);
@@ -62,11 +66,7 @@ namespace DI.Installers.FlappyBirdScene
             Container.Bind<CloudsFactory>().AsSingle().WithArguments(_settings._backgroundGenerationSettings.CloudsSettings);
             Container.Bind<BushesFactory>().AsSingle().WithArguments(_settings._backgroundGenerationSettings.BushesSettings);
             
-            Container.Bind<ILevelGenerator>().
-                To<FlappyLevelGenerator>().
-                FromNew().
-                AsSingle().
-                WithArguments(_settings, _bird, _invisibleBorder2D);
+            Container.Bind<ILevelGenerator>().To<FlappyLevelGenerator>().FromNew().AsSingle().WithArguments(_settings, _bird);
         }
     }
 }

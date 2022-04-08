@@ -2,6 +2,7 @@
 using Scenes.Actors.Movement;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.InputSystem;
 using Zenject;
 
 namespace Scenes.Actors.FlappyBird
@@ -9,8 +10,10 @@ namespace Scenes.Actors.FlappyBird
     [RequireComponent(typeof(FlappyMovement))]
     public class Bird : MonoBehaviour
     {
+        public bool IsAlive => !_isDied;
         [SerializeField] private UnityEvent _dieEvent;
         private SignalBus _signalBus;
+        private bool _isDied;
         
         [Inject]
         public void Init(SignalBus signalBus)
@@ -18,8 +21,13 @@ namespace Scenes.Actors.FlappyBird
             _signalBus = signalBus;
             
             //TODO: Должна ли птица знать о сигналах?
-            _signalBus.Subscribe<PipeTouchedSignal>(x =>
+            GetComponent<PlayerInput>().onControlsChanged += context =>
             {
+                //print(context.);
+            };
+            
+
+            _signalBus.Subscribe<PipeTouchedSignal>(x => {
                 //TODO Исправить двойную проверку что тут, что в трубе
                 if (x.CollisionObj2D.collider.GetComponent<Bird>() != null)
                 {
@@ -27,8 +35,7 @@ namespace Scenes.Actors.FlappyBird
                 }
             });
             
-            _signalBus.Subscribe<LandTouchedSignal>(x =>
-            {
+            _signalBus.Subscribe<LandTouchedSignal>(x => {
                 //TODO Исправить двойную проверку что тут, что на земле
                 if (x.CollisionObj2D.collider.GetComponent<Bird>() != null)
                 {
@@ -39,11 +46,14 @@ namespace Scenes.Actors.FlappyBird
 
         public void Die()
         {
+            if(_isDied) return;
             _dieEvent.Invoke();
+            _isDied = true;
             //TODO Анимация смээрти
             GetComponent<FlappyMovement>().enabled = false;
-            GetComponent<Collider2D>().isTrigger = true;
+            //GetComponent<Collider2D>().isTrigger = true;
             _signalBus.TryFire<BirdDiedSignal>();
+            
         }
     }
 }

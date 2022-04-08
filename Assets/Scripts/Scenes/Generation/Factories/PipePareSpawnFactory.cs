@@ -1,11 +1,9 @@
 ﻿using System;
 using Data.Extensions;
-using Scenes.Actors;
 using Scenes.Actors.FlappyBird;
 using Unity.Mathematics;
 using UnityEngine;
 using Zenject;
-using Object = UnityEngine.Object;
 
 namespace Scenes.Generation.Factories
 {

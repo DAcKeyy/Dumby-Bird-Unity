@@ -18,7 +18,6 @@ namespace Scenes.Generation.Contexts.FlappyBird
         private readonly ILevelGenerator _cloudsGenerator;
         private readonly FlappyLevelGenerationSettings _levelGenerationSettings;
         private readonly Bird _player;
-        private readonly InvisibleBorder2D _topBorder2D;
         
         private Vector2 _lastPlayerPosition;
         private bool isGameStarted;
@@ -33,19 +32,15 @@ namespace Scenes.Generation.Contexts.FlappyBird
             BushesFactory bushesFactory,
             CloudsFactory cloudsFactory,
             Bird player,
-            SignalBus signalBus, 
-            InvisibleBorder2D topBorder2D) 
+            SignalBus signalBus) 
         {
             signalBus.Subscribe<GamePointObtainedSignal>(x => Update());
             signalBus.Subscribe<GameStarted>(x => {
-                CreatePipes(
-                    levelGenerationSettings._pipePareGenerationSettings,pareSpawnFactory,
-                    _player.transform.position);
+                CreatePipes(levelGenerationSettings._pipePareGenerationSettings,pareSpawnFactory,_player.transform.position);
                 isGameStarted = true;
             });
             
             _player = player;
-            _topBorder2D = topBorder2D;
             _levelGenerationSettings = levelGenerationSettings;
             _buildingsGenerator = new BuildingsGenerator(levelGenerationSettings._backgroundGenerationSettings, buildingsFactory);
             _landGenerator = new LandGenerator(levelGenerationSettings._landGenerationSettings, landSpawnFactory);
@@ -56,10 +51,6 @@ namespace Scenes.Generation.Contexts.FlappyBird
         public void Create()
         {
             _lastPlayerPosition = _player.transform.position;
-            _topBorder2D.ChangePosition(_levelGenerationSettings._invisibleBordersPosition);
-            _topBorder2D.ChangeColliderSize(new Vector2( //TODO: Remove magic number
-                _levelGenerationSettings._pipePareGenerationSettings.PipeStartPosition.x * 2,
-                1));
             _landGenerator.Create();
             _buildingsGenerator.Create();
             _bushesGenerator.Create();
@@ -69,7 +60,7 @@ namespace Scenes.Generation.Contexts.FlappyBird
         public void Update()
         {
             var playerPathDistance = (Vector2)_player.transform.position - _lastPlayerPosition;
-            _topBorder2D.ChangePosition(new Vector2(_player.transform.position.x, _topBorder2D.transform.position.y));
+
             //TODO: Они все однотипные, как это фискисть...
             if(isGameStarted) UpdatePipes(playerPathDistance);
             UpdateLands(playerPathDistance);

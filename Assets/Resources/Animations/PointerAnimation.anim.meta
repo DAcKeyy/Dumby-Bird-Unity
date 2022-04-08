@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Resources/Prefubs/InvisibleBorder2D.prefab.meta
+guid: fadb32e1d5678434cb5b65d42a71ba1e
+PrefabImporter:
+  externalObjects: {}
+========
+guid: 5358c1b94a64051438765baa20803c7d
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 7400000
+>>>>>>>> origin/Major:Assets/Resources/Animations/PointerAnimation.anim.meta
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

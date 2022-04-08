@@ -2,7 +2,9 @@
 /shelf/
 /workspace.xml
 # Rider ignored files
-/modules.xml
-/.idea.Dumby-Bird-Unity.iml
 /contentModel.xml
+/.idea.Dumby-Bird-Unity.iml
+/modules.xml
 /projectSettingsUpdater.xml
+# Editor-based HTTP Client requests
+/httpRequests/

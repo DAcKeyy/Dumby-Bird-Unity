@@ -19,7 +19,7 @@ MonoBehaviour:
         _themselvesDistance:
           min: 2
           max: 3
-      _pipeStartPosition: {x: 3, y: 0}
+      _pipeStartPosition: {x: 6, y: 0}
       _pipeDistance: 4
       _pipeYOffset: 2
       _pipesPoolAmount: 6
