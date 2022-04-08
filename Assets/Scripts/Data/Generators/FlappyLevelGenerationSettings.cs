@@ -7,6 +7,7 @@ namespace Data.Generators
     [Serializable]
     public struct FlappyLevelGenerationSettings
     {
+        public Vector2 _invisibleBordersPosition;
         public PipePareGenerationSettings _pipePareGenerationSettings;
         public LandGenerationSettings _landGenerationSettings;
         public BackgroundGenerationSettings _backgroundGenerationSettings;

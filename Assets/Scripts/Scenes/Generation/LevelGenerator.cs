@@ -12,7 +12,7 @@ namespace Scenes.Generation
         [Inject] private SignalBus _signalBus;
         private IEnumerator _updateCoroutine;
         
-        private void OnEnable()
+        private void Start()
         {
             _levelGeneration.Create();
                 

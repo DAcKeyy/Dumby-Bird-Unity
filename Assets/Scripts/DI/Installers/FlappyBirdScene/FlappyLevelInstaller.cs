@@ -18,6 +18,7 @@ namespace DI.Installers.FlappyBirdScene
         [SerializeField] private UnityEvent _gamePointObtained;
         [SerializeField] private UnityEvent<bool> _gamePlaying;
         [SerializeField] private Bird _bird;
+        [SerializeField] private InvisibleBorder2D _invisibleBorder2D;
         [Inject] private FlappyLevelGenerationSettings _settings;
         
         public override void InstallBindings()
@@ -48,12 +49,12 @@ namespace DI.Installers.FlappyBirdScene
                 _gamePlaying.Invoke(!x.Paused);
             });
 
-            //TODO: Убрать это
             Container.BindSignal<BirdDiedSignal>().ToMethod(x => {
                 _gamePlaying.Invoke(false);
             });
 
             Container.Bind<Bird>().FromInstance(_bird).AsSingle().NonLazy();
+            Container.Bind<InvisibleBorder2D>().FromInstance(_invisibleBorder2D).AsSingle().NonLazy();
             
             Container.Bind<PipePareSpawnFactory>().AsSingle().WithArguments(_settings._pipePareGenerationSettings.PipeSettings);
             Container.Bind<LandSpawnFactory>().AsSingle().WithArguments(_settings._landGenerationSettings.LandSettings);
@@ -65,7 +66,7 @@ namespace DI.Installers.FlappyBirdScene
                 To<FlappyLevelGenerator>().
                 FromNew().
                 AsSingle().
-                WithArguments(_settings, _bird);
+                WithArguments(_settings, _bird, _invisibleBorder2D);
         }
     }
 }
